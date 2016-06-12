@@ -73,6 +73,9 @@ public class NotificationService implements INotificationService {
             helper.setTo(receiverEmail);
             helper.setSubject("London Air - Notification");
             helper.setText(messageContent);
+
+            logger.info("email notification sent");
+
         } catch (MessagingException e) {
             e.printStackTrace();
         }

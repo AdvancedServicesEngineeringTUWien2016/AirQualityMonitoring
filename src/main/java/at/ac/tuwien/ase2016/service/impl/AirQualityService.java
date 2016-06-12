@@ -244,7 +244,7 @@ public class AirQualityService implements IAirQualityService {
         s.setId(5);
         s.setLatitude(51.4946486813055);
         s.setLongitude(0.137279111232178);
-        s.setMailAddress("hdaniel19@gmail.com");
+        s.setMailAddress("ase2016.tuvienna@gmail.com");
         s.setNotifyViaEmail(true);
         s.setPhoneNumber("0043699189457777");
         s.setNotifyViaPhone(true);
