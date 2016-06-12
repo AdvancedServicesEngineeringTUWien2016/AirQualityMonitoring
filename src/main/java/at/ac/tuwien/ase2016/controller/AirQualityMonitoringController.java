@@ -25,6 +25,16 @@ public class AirQualityMonitoringController {
     private static final Logger logger = LogManager.getLogger(AirQualityMonitoringController.class);
 
 
+    @RequestMapping(value = "/airQualityIndex", method = RequestMethod.PATCH)
+    @ResponseBody
+    public HourlyAirQualityIndex updateAirQualityIndex() throws Exception {
+
+        logger.info("update current index and store to db");
+
+        return airQualityService.updateAirQualityIndex();
+
+    }
+
     @RequestMapping(value = "/airQualityIndex", method = RequestMethod.GET)
     @ResponseBody
     public HourlyAirQualityIndex getCurrentAirQualityIndex() throws Exception {
