@@ -1,5 +1,5 @@
 
-package at.ac.tuwien.ase2016.domain;
+package at.ac.tuwien.ase2016.domain.londonair;
 
 import com.fasterxml.jackson.annotation.*;
 import org.apache.commons.lang3.builder.ToStringBuilder;

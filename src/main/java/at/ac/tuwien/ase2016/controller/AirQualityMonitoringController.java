@@ -1,7 +1,8 @@
 package at.ac.tuwien.ase2016.controller;
 
 
-import at.ac.tuwien.ase2016.domain.HourlyAirQualityIndex;
+import at.ac.tuwien.ase2016.domain.londonair.HourlyAirQualityIndex;
+import at.ac.tuwien.ase2016.domain.londonair.advice.AirQualityIndexHealthAdvice;
 import at.ac.tuwien.ase2016.service.IAirQualityService;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -35,6 +36,17 @@ public class AirQualityMonitoringController {
 
     }
 
+    @RequestMapping(value = "/airQualityIndex/process", method = RequestMethod.PATCH)
+    @ResponseBody
+    public HourlyAirQualityIndex processSubscriptions() throws Exception {
+
+        logger.info("process subscription");
+
+        airQualityService.processSubscriptions();
+        return new HourlyAirQualityIndex();
+
+    }
+
     @RequestMapping(value = "/airQualityIndex", method = RequestMethod.GET)
     @ResponseBody
     public HourlyAirQualityIndex getCurrentAirQualityIndex() throws Exception {
@@ -45,5 +57,24 @@ public class AirQualityMonitoringController {
 
     }
 
+    @RequestMapping(value = "/airQualityIndexHealthAdvice", method = RequestMethod.PATCH)
+    @ResponseBody
+    public AirQualityIndexHealthAdvice updateHealthAdvice() throws Exception {
+
+        logger.info("update current health advice and store to db");
+
+        return airQualityService.updateHealthAdvice();
+
+    }
+
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    @ResponseBody
+    public void createTestData() throws Exception {
+
+        logger.info("create test data");
+
+        airQualityService.createTestData();
+
+    }
 
 }

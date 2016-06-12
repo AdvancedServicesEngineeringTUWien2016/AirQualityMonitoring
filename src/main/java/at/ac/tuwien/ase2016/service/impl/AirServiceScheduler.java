@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+
+
 /**
  * Created by DanielHofer on 12.06.2016.
  */
@@ -20,13 +22,16 @@ public class AirServiceScheduler {
 
     private static final Logger logger = LogManager.getLogger(AirServiceScheduler.class);
 
-    //1 hour
-    @Scheduled(fixedRate = 60* 60 * 1000)
+    @Scheduled(fixedRateString = "${scheduler.airIndexUpdate.schedule}")
     public void reportCurrentTime() {
-        logger.info("Update air quality index");
+
+        logger.info("Update air quality index and process notifications");
 
         try {
             airQualityService.updateAirQualityIndex();
+            airQualityService.updateHealthAdvice();
+
+            airQualityService.processSubscriptions();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,8 +1,13 @@
 
-package at.ac.tuwien.ase2016.domain;
+package at.ac.tuwien.ase2016.domain.londonair;
 
 import com.fasterxml.jackson.annotation.*;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.geo.Point;
+import org.springframework.data.mongodb.core.index.GeoSpatialIndexType;
+import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.annotation.Generated;
 import java.util.ArrayList;
@@ -10,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Document(collection = "site")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
@@ -28,6 +34,7 @@ public class Site {
     @JsonProperty("@BulletinDate")
     private String bulletinDate;
     @JsonProperty("@SiteCode")
+    @Id
     private String siteCode;
     @JsonProperty("@SiteName")
     private String siteName;
@@ -45,6 +52,9 @@ public class Site {
     private List<Species> species = new ArrayList<Species>();
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    @JsonIgnore
+    @GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
+    private Point addressLocation;
 
     /**
      * No args constructor for use in serialization
@@ -75,6 +85,15 @@ public class Site {
         this.latitudeWGS84 = latitudeWGS84;
         this.longitudeWGS84 = longitudeWGS84;
         this.species = species;
+    }
+
+    public Point getAddressLocation() {
+        return addressLocation;
+    }
+
+    public void setAddressLocation(){
+        //this.position=new double[] {Double.valueOf(latitude),Double.valueOf(longitude)};
+        this.addressLocation=new Point(Double.valueOf(longitude),Double.valueOf(latitude));
     }
 
     /**
