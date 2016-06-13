@@ -216,7 +216,7 @@ public class AirQualityService implements IAirQualityService {
 
         //USER 1
         User u = new User();
-        u.setId(1);
+        u.setId("1");
         u.setName("Willi Haben");
         u.setAvatar("svg-2");
         u.setSubscribedUser(false);
@@ -224,7 +224,7 @@ public class AirQualityService implements IAirQualityService {
 
         //subscription 1 for user 1
         Subscription s = new Subscription();
-        s.setId(1);
+        s.setId("1");
         s.setLatitude(51.563752);
         s.setLongitude(0.177891);
         s.setMailAddress("ase2016.tuvienna@gmail.com");
@@ -239,7 +239,7 @@ public class AirQualityService implements IAirQualityService {
 
         //USER 2
         u = new User();
-        u.setId(2);
+        u.setId("2");
         u.setName("Gertie Ganse");
         u.setAvatar("svg-3");
         u.setSubscribedUser(true);
@@ -248,7 +248,7 @@ public class AirQualityService implements IAirQualityService {
 
         //subscription 1 for user 2
         s = new Subscription();
-        s.setId(2);
+        s.setId("2");
         s.setLatitude(51.529389);
         s.setLongitude(0.132857);
         s.setMailAddress("ase2016.tuvienna@gmail.com");
@@ -264,7 +264,7 @@ public class AirQualityService implements IAirQualityService {
 
         //subscription 2 for user 2
         s = new Subscription();
-        s.setId(3);
+        s.setId("3");
         s.setLatitude(51.4946486813055);
         s.setLongitude(0.137279111232178);
         s.setMailAddress("ase2016.tuvienna@gmail.com");
@@ -281,7 +281,7 @@ public class AirQualityService implements IAirQualityService {
 
         //USER 3
         u = new User();
-        u.setId(3);
+        u.setId("3");
         u.setName("Reiner Wahnsinn");
         u.setAvatar("svg-4");
         u.setSubscribedUser(true);
@@ -290,7 +290,7 @@ public class AirQualityService implements IAirQualityService {
 
         //subscription 1 for user 2
         s = new Subscription();
-        s.setId(4);
+        s.setId("4");
         s.setLatitude(51.529389);
         s.setLongitude(0.132857);
         s.setMailAddress("ase2016.tuvienna@gmail.com");
@@ -306,7 +306,7 @@ public class AirQualityService implements IAirQualityService {
 
         //subscription 2 for user 2
         s = new Subscription();
-        s.setId(5);
+        s.setId("5");
         s.setLatitude(51.4946486813055);
         s.setLongitude(0.137279111232178);
         s.setMailAddress("ase2016.tuvienna@gmail.com");

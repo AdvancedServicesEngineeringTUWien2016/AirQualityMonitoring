@@ -45,7 +45,7 @@
           </md-list>
         </md-sidenav>
 
-        <md-content flex id="content">
+        <md-content flex id="content" style="overflow: scroll;">
             <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
             <h2>{{ul.selected.name}}</h2>
             <p>{{ul.selected.content}}</p>
@@ -70,27 +70,61 @@
                         <input ng-model="ul.selected.mailAddress" type="email" placeholder="Email (required)" ng-required="true">
                     </md-input-container>
 
-
                 </md-content>
             </div>
 
             <md-divider></md-divider>
 
             <!-- show subscriptions -->
-            <!--<md-list>
-                <md-list-item ng-repeat="item in ul.subscriptions">
-                    Location: {{item.longitude}}, {{item.latitude}}. Radius: {{item.radius}}
+            <div>
+                <md-subheader class="md-no-sticky">Subscriptions</md-subheader>
+                <md-list-item class="md-2-line" ng-repeat="item in ul.subscriptions">
+                    <md-icon md-svg-src="./assets/svg/ic_room_black_24px.svg"></md-icon>
+                    <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
+                        <h3> {{item.longitude}}, {{item.latitude}} </h3>
+                        <p> {{item.radius}} Km </p>
+                    </div>
                 </md-list-item>
-            </md-list>-->
-            <md-subheader class="md-no-sticky">Subscriptions</md-subheader>
-            <md-list-item class="md-2-line" ng-repeat="item in ul.subscriptions">
-                <md-icon md-svg-src="./assets/svg/ic_room_black_24px.svg"></md-icon>
-                <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
-                    <h3> {{item.longitude}}, {{item.latitude}} </h3>
-                    <p> {{item.radius}} Km </p>
-                </div>
-            </md-list-item>
+            </div>
 
+            <md-divider></md-divider>
+
+            <!-- add new subscription -->
+            <div ng-hide="ul.selected.hideSubscriptionForm">
+                <div layout-gt-sm="row">
+
+                    <md-input-container class="md-block" flex-gt-sm="" >
+                        <label>Longitude</label>
+                        <input ng-model="ul.subscription.longitude">
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex-gt-sm="">
+                        <label>Latitude</label>
+                        <input ng-model="ul.subscription.latitude">
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex-gt-sm="">
+                        <label>Radius</label>
+                        <md-select ng-model="ul.subscription.radius">
+                            <md-option ng-repeat="item in ul.radius" value="{{item.radius}}">
+                                {{item.radius}} Km
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex-gt-sm="">
+                        <label>Threshold</label>
+                        <md-select ng-model="ul.subscription.threshold">
+                            <md-option ng-repeat="item in ul.threshold" value="{{item.threshold}}">
+                                {{item.threshold}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+
+                </div>
+
+                <md-button class="md-raised md-primary" ng-click="ul.createNewSubscription()">Submit</md-button>
+            </div>
 
         </md-content>
 
