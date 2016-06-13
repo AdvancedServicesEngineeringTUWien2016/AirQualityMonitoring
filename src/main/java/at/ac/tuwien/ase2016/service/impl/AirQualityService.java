@@ -218,6 +218,7 @@ public class AirQualityService implements IAirQualityService {
         User u = new User();
         u.setId(1);
         u.setName("Willi Haben");
+        u.setAvatar("svg-2");
         u.setSubscribedUser(false);
         u.setMailAddress("ase2016.tuvienna@gmail.com");
 
@@ -240,6 +241,7 @@ public class AirQualityService implements IAirQualityService {
         u = new User();
         u.setId(2);
         u.setName("Gertie Ganse");
+        u.setAvatar("svg-3");
         u.setSubscribedUser(true);
         u.setMailAddress("ase2016.tuvienna@gmail.com");
         u.setPhoneNumber("0043699189457777");
@@ -280,7 +282,8 @@ public class AirQualityService implements IAirQualityService {
         //USER 3
         u = new User();
         u.setId(3);
-        u.setName("Gertie Ganse");
+        u.setName("Reiner Wahnsinn");
+        u.setAvatar("svg-4");
         u.setSubscribedUser(true);
         u.setMailAddress("ase2016.tuvienna@gmail.com");
         u.setPhoneNumber("0043699189457777");

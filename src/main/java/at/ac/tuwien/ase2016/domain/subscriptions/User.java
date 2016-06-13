@@ -17,6 +17,7 @@ public class User {
     private boolean isSubscribedUser;
     private String mailAddress;
     private String phoneNumber;
+    private String avatar;
 
     public User(){
         subscriptions = new ArrayList<>();
@@ -72,5 +73,13 @@ public class User {
 
     public void setMailAddress(String mailAddress) {
         this.mailAddress = mailAddress;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

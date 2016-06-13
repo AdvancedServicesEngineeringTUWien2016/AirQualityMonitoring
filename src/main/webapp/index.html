@@ -52,6 +52,8 @@
 
             <div  layout="column" layout-padding="" ng-cloak="" class="inputdemoIcons" >
                 <md-content class="md-no-momentum">
+
+                    <!-- show personal data -->
                     <md-input-container class="md-icon-float md-block">
                         <label>Name</label>
                         <md-icon md-svg-src="./assets/svg/ic_person_24px.svg" class="name"></md-icon>
@@ -60,19 +62,36 @@
 
                     <md-input-container md-no-float="" class="md-block">
                         <md-icon md-svg-src="./assets/svg/ic_phone_24px.svg"></md-icon>
-                        <input ng-model="ul.selected.name" type="text" placeholder="Phone Number">
+                        <input ng-model="ul.selected.phoneNumber" type="text" placeholder="Phone Number">
                     </md-input-container>
 
                     <md-input-container class="md-block">
                         <md-icon md-svg-src="./assets/svg/ic_email_24px.svg" class="email"></md-icon>
-                        <input ng-model="ul.selected.name" type="email" placeholder="Email (required)" ng-required="true">
+                        <input ng-model="ul.selected.mailAddress" type="email" placeholder="Email (required)" ng-required="true">
                     </md-input-container>
 
-                   <!-- <md-button class="share" md-no-ink ng-click="ul.makeContact(ul.selected)" aria-label="Share with {{ ul.selected.name }}">
-                        <md-icon md-svg-icon="share"></md-icon>
-                    </md-button>-->
+
                 </md-content>
             </div>
+
+            <md-divider></md-divider>
+
+            <!-- show subscriptions -->
+            <!--<md-list>
+                <md-list-item ng-repeat="item in ul.subscriptions">
+                    Location: {{item.longitude}}, {{item.latitude}}. Radius: {{item.radius}}
+                </md-list-item>
+            </md-list>-->
+            <md-subheader class="md-no-sticky">Subscriptions</md-subheader>
+            <md-list-item class="md-2-line" ng-repeat="item in ul.subscriptions">
+                <md-icon md-svg-src="./assets/svg/ic_room_black_24px.svg"></md-icon>
+                <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
+                    <h3> {{item.longitude}}, {{item.latitude}} </h3>
+                    <p> {{item.radius}} Km </p>
+                </div>
+            </md-list-item>
+
+
         </md-content>
 
     </div>
