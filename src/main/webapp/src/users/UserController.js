@@ -23,6 +23,10 @@
     self.toggleList   = toggleUsersList;
     self.makeContact  = makeContact;
 
+
+      //$scope.widget = {title: 'abc'};
+
+
     // Load all registered users
 
     userService
