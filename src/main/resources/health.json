@@ -1,0 +1,62 @@
+{  
+   "AirQualityIndexHealthAdvice":{  
+      "HealthAdvice":[  
+         {  
+            "@AirQualityBand":"Low",
+            "@LowerAirQualityIndex":"1",
+            "@UpperAirQualityIndex":"3",
+            "@Group":"At-risk individuals",
+            "@Advice":"Enjoy your usual outdoor activities."
+         },
+         {  
+            "@AirQualityBand":"Low",
+            "@LowerAirQualityIndex":"1",
+            "@UpperAirQualityIndex":"3",
+            "@Group":"General population",
+            "@Advice":"Enjoy your usual outdoor activities."
+         },
+         {  
+            "@AirQualityBand":"Moderate",
+            "@LowerAirQualityIndex":"4",
+            "@UpperAirQualityIndex":"6",
+            "@Group":"At-risk individuals",
+            "@Advice":"Adults and children with lung problems, and adults with heart problems, who experience symptoms, should consider reducing strenuous physical activity, particularly outdoors."
+         },
+         {  
+            "@AirQualityBand":"Moderate",
+            "@LowerAirQualityIndex":"4",
+            "@UpperAirQualityIndex":"6",
+            "@Group":"General population",
+            "@Advice":"Enjoy your usual outdoor activities."
+         },
+         {  
+            "@AirQualityBand":"High",
+            "@LowerAirQualityIndex":"7",
+            "@UpperAirQualityIndex":"9",
+            "@Group":"At-risk individuals",
+            "@Advice":"Adults and children with lung problems, and adults with heart problems, should reduce strenuous physical exertion, particularly outdoors, and particularly if they experience symptoms. People with asthma may find they need to use their reliever inhaler more often. Older people should also reduce physical exertion."
+         },
+         {  
+            "@AirQualityBand":"High",
+            "@LowerAirQualityIndex":"7",
+            "@UpperAirQualityIndex":"9",
+            "@Group":"General population",
+            "@Advice":"Anyone experiencing discomfort such as sore eyes, cough or sore throat should consider reducing activity, particularly outdoors."
+         },
+         {  
+            "@AirQualityBand":"Very High",
+            "@LowerAirQualityIndex":"10",
+            "@UpperAirQualityIndex":"10",
+            "@Group":"At-risk individuals",
+            "@Advice":"Adults and children with lung problems, adults with heart problems, and older people, should avoid strenuous physical activity. People with asthma may find they need to use their reliever inhaler more often."
+         },
+         {  
+            "@AirQualityBand":"Very High",
+            "@LowerAirQualityIndex":"10",
+            "@UpperAirQualityIndex":"10",
+            "@Group":"General population",
+            "@Advice":"Reduce physical exertion, particularly outdoors, especially if you experience symptoms such as cough or sore throat."
+         }
+      ]
+   }
+}

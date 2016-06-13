@@ -72,7 +72,7 @@ public class AirQualityService implements IAirQualityService {
             if (applicationProperties.getSchedulerSimulate()){
                 //simulation: get current air health advice from file
                 airQualityIndexHealthAdvice =
-                        mapper.readValue(new File("C:\\tmp\\health.json"), AirQualityIndexHealthAdvice.class);
+                        mapper.readValue(new File(applicationProperties.getSchedulerSimulateDir()+"health.json"), AirQualityIndexHealthAdvice.class);
             }else{
                     //get current air health advice from api
                 airQualityIndexHealthAdvice =
@@ -110,7 +110,7 @@ public class AirQualityService implements IAirQualityService {
             if (applicationProperties.getSchedulerSimulate()){
                 //simulation: get current air quality data from file
                 airQualityIndex =
-                        mapper.readValue(new File("C:\\tmp\\air.json"), AirQualityIndex.class);
+                        mapper.readValue(new File(applicationProperties.getSchedulerSimulateDir()+"air.json"), AirQualityIndex.class);
             }else{
                 //get current air quality data from api
                 airQualityIndex =
@@ -169,6 +169,8 @@ public class AirQualityService implements IAirQualityService {
 
         for(Subscription subscription : subscriptions){
 
+            logger.info("--> PROCESS subscription with id "+ subscription.getId());
+
             sumSpeciesIndex = 0.0;
             speciesCount = 0;
 
@@ -177,11 +179,18 @@ public class AirQualityService implements IAirQualityService {
             sites = siteRepository.findByAddressLocationNear(new Point(subscription.getLongitude(), subscription.getLatitude()), distance);
 
             for(Site site : sites){
+
+                logger.info("process site with id "+site.getSiteName());
+
                 //summarize airquality index for all species
                 for(Species species : site.getSpecies()){
+
+                    logger.info("process species with id "+species.getSpeciesCode());
+
                     if(species.getAirQualityIndex() != null){
                         sumSpeciesIndex += Double.valueOf(species.getAirQualityIndex());
                     }
+
                 }
                 //summarize number of species
                 speciesCount += site.getSpecies().size();
@@ -194,6 +203,8 @@ public class AirQualityService implements IAirQualityService {
             if (averageAirQualityIndex >= subscription.getThreshold()){
                 notificationService.sendNotification(subscription);
             }
+
+            logger.info("--> SUMMARY for subscription "+subscription.getId()+": averageAirQualityIndex="+averageAirQualityIndex);
 
         }
 

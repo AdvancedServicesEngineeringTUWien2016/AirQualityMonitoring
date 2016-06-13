@@ -25,6 +25,10 @@ public class ApplicationProperties {
     @Value("${scheduler.airIndexUpdate.simulate}")
     private Boolean schedulerSimulate;
 
+    @Value("${scheduler.airIndexUpdate.directory}")
+    private String schedulerSimulateDir;
+
+
     public String getSmsSimulation() {
         return SmsSimulation;
     }
@@ -35,6 +39,10 @@ public class ApplicationProperties {
 
     public Boolean getSchedulerSimulate() {
         return schedulerSimulate;
+    }
+
+    public String getSchedulerSimulateDir() {
+        return schedulerSimulateDir;
     }
 
     @Bean
