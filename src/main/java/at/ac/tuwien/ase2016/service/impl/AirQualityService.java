@@ -6,6 +6,7 @@ import at.ac.tuwien.ase2016.domain.subscriptions.Subscription;
 import at.ac.tuwien.ase2016.domain.subscriptions.User;
 import at.ac.tuwien.ase2016.repository.*;
 import at.ac.tuwien.ase2016.service.IAirQualityService;
+import at.ac.tuwien.ase2016.spring.ApplicationProperties;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.LogManager;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -54,16 +56,28 @@ public class AirQualityService implements IAirQualityService {
     @Autowired
     private HourlyAirQualityIndexRepository hourlyAirQualityIndexRepository;
 
+    @Autowired
+    protected ApplicationProperties applicationProperties;
+
     private static final Logger logger = LogManager.getLogger(AirQualityService.class);
 
     @Override
     public AirQualityIndexHealthAdvice updateHealthAdvice() throws Exception {
 
+        ObjectMapper mapper = new ObjectMapper();
         AirQualityIndexHealthAdvice airQualityIndexHealthAdvice = null;
+
         try {
-            //get current air quality data
-            airQualityIndexHealthAdvice =
-                    restTemplate.getForObject("http://api.erg.kcl.ac.uk/AirQuality/Information/IndexHealthAdvice/Json", AirQualityIndexHealthAdvice.class);
+            //simulate api?
+            if (applicationProperties.getSchedulerSimulate()){
+                //simulation: get current air health advice from file
+                airQualityIndexHealthAdvice =
+                        mapper.readValue(new File("C:\\tmp\\health.json"), AirQualityIndexHealthAdvice.class);
+            }else{
+                    //get current air health advice from api
+                airQualityIndexHealthAdvice =
+                        restTemplate.getForObject("http://api.erg.kcl.ac.uk/AirQuality/Information/IndexHealthAdvice/Json", AirQualityIndexHealthAdvice.class);
+            }
         }catch(Exception e){
             //TODO errror handling
             e.printStackTrace();
@@ -91,9 +105,18 @@ public class AirQualityService implements IAirQualityService {
 
         AirQualityIndex airQualityIndex = null;
         try {
-            //get current air quality data
-            airQualityIndex =
-                    restTemplate.getForObject("http://api.erg.kcl.ac.uk/AirQuality/Hourly/MonitoringIndex/GroupName=London/Json", AirQualityIndex.class);
+
+            //simulate api?
+            if (applicationProperties.getSchedulerSimulate()){
+                //simulation: get current air quality data from file
+                airQualityIndex =
+                        mapper.readValue(new File("C:\\tmp\\air.json"), AirQualityIndex.class);
+            }else{
+                //get current air quality data from api
+                airQualityIndex =
+                        restTemplate.getForObject("http://api.erg.kcl.ac.uk/AirQuality/Hourly/MonitoringIndex/GroupName=London/Json", AirQualityIndex.class);
+            }
+
         }catch(Exception e){
             //TODO errror handling
             e.printStackTrace();
@@ -154,19 +177,14 @@ public class AirQualityService implements IAirQualityService {
             sites = siteRepository.findByAddressLocationNear(new Point(subscription.getLongitude(), subscription.getLatitude()), distance);
 
             for(Site site : sites){
-
                 //summarize airquality index for all species
                 for(Species species : site.getSpecies()){
-
                     if(species.getAirQualityIndex() != null){
                         sumSpeciesIndex += Double.valueOf(species.getAirQualityIndex());
                     }
-
                 }
-
                 //summarize number of species
                 speciesCount += site.getSpecies().size();
-
             }
 
             //calculate average airQualityIndex for subscription
@@ -196,15 +214,16 @@ public class AirQualityService implements IAirQualityService {
         List<User> users = new ArrayList<>();
         List<Subscription> subscriptions = new ArrayList<>();
 
-        //user 1
+        //USER 1
         User u = new User();
         u.setId(1);
-        u.setFirstName("Willi");
-        u.setLastName("Haben");
+        u.setName("Willi Haben");
+        u.setSubscribedUser(false);
+        u.setMailAddress("ase2016.tuvienna@gmail.com");
 
         //subscription 1 for user 1
         Subscription s = new Subscription();
-        s.setId(2);
+        s.setId(1);
         s.setLatitude(51.563752);
         s.setLongitude(0.177891);
         s.setMailAddress("ase2016.tuvienna@gmail.com");
@@ -217,11 +236,54 @@ public class AirQualityService implements IAirQualityService {
         users.add(u);
         subscriptions.add(s);
 
-        //user 2
+        //USER 2
+        u = new User();
+        u.setId(2);
+        u.setName("Gertie Ganse");
+        u.setSubscribedUser(true);
+        u.setMailAddress("ase2016.tuvienna@gmail.com");
+        u.setPhoneNumber("0043699189457777");
+
+        //subscription 1 for user 2
+        s = new Subscription();
+        s.setId(2);
+        s.setLatitude(51.529389);
+        s.setLongitude(0.132857);
+        s.setMailAddress("ase2016.tuvienna@gmail.com");
+        s.setNotifyViaEmail(true);
+        s.setPhoneNumber("0043699189457777");
+        s.setNotifyViaPhone(true);
+        s.setRadius(5);
+        s.setThreshold(8d);
+
+        subscriptions.add(s);
+
+        u.addSubscription(s);
+
+        //subscription 2 for user 2
+        s = new Subscription();
+        s.setId(3);
+        s.setLatitude(51.4946486813055);
+        s.setLongitude(0.137279111232178);
+        s.setMailAddress("ase2016.tuvienna@gmail.com");
+        s.setNotifyViaEmail(true);
+        s.setPhoneNumber("0043699189457777");
+        s.setNotifyViaPhone(true);
+        s.setRadius(8);
+        s.setThreshold(7d);
+
+        subscriptions.add(s);
+
+        u.addSubscription(s);
+        users.add(u);
+
+        //USER 3
         u = new User();
         u.setId(3);
-        u.setFirstName("Gertie");
-        u.setLastName("Ganse");
+        u.setName("Gertie Ganse");
+        u.setSubscribedUser(true);
+        u.setMailAddress("ase2016.tuvienna@gmail.com");
+        u.setPhoneNumber("0043699189457777");
 
         //subscription 1 for user 2
         s = new Subscription();
@@ -248,8 +310,8 @@ public class AirQualityService implements IAirQualityService {
         s.setNotifyViaEmail(true);
         s.setPhoneNumber("0043699189457777");
         s.setNotifyViaPhone(true);
-        s.setRadius(8);
-        s.setThreshold(7d);
+        s.setRadius(10);
+        s.setThreshold(5d);
 
         subscriptions.add(s);
 

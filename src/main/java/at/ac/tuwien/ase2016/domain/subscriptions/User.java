@@ -12,9 +12,11 @@ public class User {
 
     @Id
     private long id;
-    private String firstName;
-    private String lastName;
+    private String name;
     private List<Subscription> subscriptions;
+    private boolean isSubscribedUser;
+    private String mailAddress;
+    private String phoneNumber;
 
     public User(){
         subscriptions = new ArrayList<>();
@@ -28,20 +30,12 @@ public class User {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String lastName) {
+        this.name = lastName;
     }
 
     public List<Subscription> getSubscriptions() {
@@ -54,5 +48,29 @@ public class User {
 
     public void addSubscription(Subscription s){
         subscriptions.add(s);
+    }
+
+    public boolean isSubscribedUser() {
+        return isSubscribedUser;
+    }
+
+    public void setSubscribedUser(boolean subscribedUser) {
+        isSubscribedUser = subscribedUser;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getMailAddress() {
+        return mailAddress;
+    }
+
+    public void setMailAddress(String mailAddress) {
+        this.mailAddress = mailAddress;
     }
 }

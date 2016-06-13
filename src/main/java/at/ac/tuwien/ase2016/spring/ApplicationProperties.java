@@ -22,12 +22,19 @@ public class ApplicationProperties {
     @Value("${notification.sms.accesstoken}")
     private String SmsAccessToken;
 
+    @Value("${scheduler.airIndexUpdate.simulate}")
+    private Boolean schedulerSimulate;
+
     public String getSmsSimulation() {
         return SmsSimulation;
     }
 
     public String getSmsAccessToken() {
         return SmsAccessToken;
+    }
+
+    public Boolean getSchedulerSimulate() {
+        return schedulerSimulate;
     }
 
     @Bean
