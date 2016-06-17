@@ -81,8 +81,8 @@
                 <md-list-item class="md-2-line" ng-repeat="item in ul.subscriptions">
                     <md-icon md-svg-src="./assets/svg/ic_room_black_24px.svg"></md-icon>
                     <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
-                        <h3> {{item.longitude}}, {{item.latitude}} </h3>
-                        <p> {{item.radius}} Km </p>
+                        <h3> {{item.latitude}}, {{item.longitude}} </h3>
+                        <p> {{item.radius}} Km, {{item.threshold}} threshold </p>
                     </div>
                 </md-list-item>
             </div>
@@ -94,13 +94,13 @@
                 <div layout-gt-sm="row">
 
                     <md-input-container class="md-block" flex-gt-sm="" >
-                        <label>Longitude</label>
-                        <input ng-model="ul.subscription.longitude">
+                        <label>Latitude</label>
+                        <input ng-model="ul.subscription.latitude">
                     </md-input-container>
 
                     <md-input-container class="md-block" flex-gt-sm="">
-                        <label>Latitude</label>
-                        <input ng-model="ul.subscription.latitude">
+                        <label>Longitude</label>
+                        <input ng-model="ul.subscription.longitude">
                     </md-input-container>
 
                     <md-input-container class="md-block" flex-gt-sm="">
