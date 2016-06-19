@@ -72,16 +72,6 @@ public class AirQualityMonitoringController {
 
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.POST)
-    @ResponseBody
-    public void createTestData() throws Exception {
-
-        logger.info("create test data");
-
-        airQualityService.createTestData();
-
-    }
-
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     @ResponseBody
     public List<User> getAllUsers() throws Exception {

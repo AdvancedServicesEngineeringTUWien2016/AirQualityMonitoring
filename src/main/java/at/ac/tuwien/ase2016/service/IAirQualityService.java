@@ -16,7 +16,5 @@ public interface IAirQualityService {
 
     public AirQualityIndexHealthAdvice updateHealthAdvice() throws Exception;
 
-    public void createTestData() throws Exception;
-
 
 }
