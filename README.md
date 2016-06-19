@@ -1,7 +1,23 @@
 # ase2016
 Air Quality Monitoring
 
-* http://localhost:8080/airQualityMonitoring/index.html
+# Requirements
 
-* docker build -t ase -f Dockerfile .
-* docker run --name as --volume /c/Users/DanielHofer/IdeaProjects/ase2016/src/main/resources:/app --volume /c/Users/DanielHofer/IdeaProjects/ase2016/src/main/resources:/usr/local/tomcat/logs -p 8080:8080 ase
+* JDK 8
+* Maven 3
+* MongoDB
+
+# applications.properties
+
+Change the following properties:
+
+* MongoDB host and port (row 3, 4)
+* Gmail credentials for mail notification (row 19, 20)
+* https://websms.at/produkte/online-sms account webtoken for sms notification (row 28)
+* London Air API simulation (row 13)
+* https://websms.at/produkte/online-sms simulation (row 27)
+
+# Frontend
+
+* Build with maven. Deploy on Tomcat 8 or start using spring-boot:start
+* URL: http://localhost:8080/airQualityMonitoring/index.html
