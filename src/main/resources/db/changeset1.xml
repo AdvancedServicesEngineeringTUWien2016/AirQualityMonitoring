@@ -1,0 +1,160 @@
+<mongoChangeLog>
+    <changeSet changeId="1" author="dh">
+        <script>
+            db.user.drop();
+        </script>
+    </changeSet>
+    <changeSet changeId="2" author="dh">
+        <script>
+            db.subscription.drop();
+        </script>
+    </changeSet>
+   <changeSet changeId="3" author="dh">
+        <script>
+
+            db.user.insert([
+            {
+                _id:"1",
+                "name":"Willi Haben",
+                "subscriptions":[
+                {
+                    _id:"1",
+                    "latitude":51.563752,
+                    "longitude":0.177891,
+                    "radius":15,
+                    "mailAddress":"ase2016.tuvienna@gmail.com",
+                    "notifyViaEmail":true,
+                    "notifyViaPhone":false,
+                    "threshold":5
+                }],
+                "isSubscribedUser":false,
+                "mailAddress":"ase2016.tuvienna@gmail.com",
+                "avatar":"svg-2"
+            },
+            {
+                _id:"2",
+                "name":"Gertie Ganse",
+                "subscriptions":[
+                {
+                    _id:"2",
+                    "latitude":51.529389,
+                    "longitude":0.132857,
+                    "radius":5,
+                    "mailAddress":"ase2016.tuvienna@gmail.com",
+                    "notifyViaEmail":true,
+                    "phoneNumber":"0043699189457777",
+                    "notifyViaPhone":true,
+                    "threshold":8
+                },
+                {
+                    _id:"3",
+                    "latitude":51.4946486813055,
+                    "longitude":0.137279111232178,
+                    "radius":8,
+                    "mailAddress":"ase2016.tuvienna@gmail.com",
+                    "notifyViaEmail":true,
+                    "phoneNumber":"0043699189457777",
+                    "notifyViaPhone":true,
+                    "threshold":7
+                } ],
+                "isSubscribedUser":true,
+                "mailAddress":"ase2016.tuvienna@gmail.com",
+                "phoneNumber":"0043699189457777",
+                "avatar":"svg-3"
+            },
+            {
+                _id:"3",
+                "name":"Reiner Wahnsinn",
+                "subscriptions":[
+                {
+                    _id:"4",
+                    "latitude":51.529389,
+                    "longitude":0.132857,
+                    "radius":5,
+                    "mailAddress":"ase2016.tuvienna@gmail.com",
+                    "notifyViaEmail":true,
+                    "phoneNumber":"0043699189457777",
+                    "notifyViaPhone":true,
+                    "threshold":8
+                },
+                {
+                    _id:"5",
+                    "latitude":51.4946486813055,
+                    "longitude":0.137279111232178,
+                    "radius":10,
+                    "mailAddress":"ase2016.tuvienna@gmail.com",
+                    "notifyViaEmail":true,
+                    "phoneNumber":"0043699189457777",
+                    "notifyViaPhone":true,
+                    "threshold":5
+                } ],
+                "isSubscribedUser":true,
+                "mailAddress":"ase2016.tuvienna@gmail.com",
+                "phoneNumber":"0043699189457777",
+                "avatar":"svg-4"
+            }
+            ]);
+
+        </script>
+    </changeSet>
+
+    <changeSet changeId="4" author="dh">
+        <script>
+
+            db.subscription.insert([
+            {
+                _id:"1",
+                "latitude":51.563752,
+                "longitude":0.177891,
+                "radius":15,
+                "mailAddress":"ase2016.tuvienna@gmail.com",
+                "notifyViaEmail":true,
+                "notifyViaPhone":false,
+                "threshold":5
+            },{
+                _id:"2",
+                "latitude":51.529389,
+                "longitude":0.132857,
+                "radius":5,
+                "mailAddress":"ase2016.tuvienna@gmail.com",
+                "notifyViaEmail":true,
+                "phoneNumber":"0043699189457777",
+                "notifyViaPhone":true,
+                "threshold":8
+            },{
+                _id:"3",
+                "latitude":51.4946486813055,
+                "longitude":0.137279111232178,
+                "radius":8,
+                "mailAddress":"ase2016.tuvienna@gmail.com",
+                "notifyViaEmail":true,
+                "phoneNumber":"0043699189457777",
+                "notifyViaPhone":true,
+                "threshold":7
+            },{
+                _id:"4",
+                "latitude":51.529389,
+                "longitude":0.132857,
+                "radius":5,
+                "mailAddress":"ase2016.tuvienna@gmail.com",
+                "notifyViaEmail":true,
+                "phoneNumber":"0043699189457777",
+                "notifyViaPhone":true,
+                "threshold":8
+            },{
+                _id:"5",
+                "latitude":51.4946486813055,
+                "longitude":0.137279111232178,
+                "radius":10,
+                "mailAddress":"ase2016.tuvienna@gmail.com",
+                "notifyViaEmail":true,
+                "phoneNumber":"0043699189457777",
+                "notifyViaPhone":true,
+                "threshold":5
+            }
+            ]);
+
+        </script>
+    </changeSet>
+
+</mongoChangeLog>
