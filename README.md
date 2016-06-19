@@ -16,7 +16,8 @@ Change the following properties:
 * https://websms.at/produkte/online-sms account webtoken for sms notification (row 28). Use simulation (row 27)
 * London Air API simulation (row 13). If true: Specify location of air.json and health.json (row 14)
 
-# Frontend
+# Build
 
-* Build with maven. Deploy on Tomcat 8 or start using spring-boot:start
+* Build with maven
+* Deploy on Tomcat 8 (see Dockerfile) or start using spring-boot:start
 * URL: http://localhost:8080/airQualityMonitoring/index.html
