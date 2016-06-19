@@ -13,9 +13,8 @@ Change the following properties:
 
 * MongoDB host and port (row 3, 4)
 * Gmail credentials for mail notification (row 19, 20)
-* https://websms.at/produkte/online-sms account webtoken for sms notification (row 28)
-* London Air API simulation (row 13)
-* https://websms.at/produkte/online-sms simulation (row 27)
+* https://websms.at/produkte/online-sms account webtoken for sms notification (row 28). Use simulation (row 27)
+* London Air API simulation (row 13). If true: Specify location of air.json and health.json (row 14)
 
 # Frontend
 
