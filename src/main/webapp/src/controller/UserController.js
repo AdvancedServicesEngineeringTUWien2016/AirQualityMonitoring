@@ -1,9 +1,9 @@
 (function(){
 
   angular
-       .module('users')
+       .module('airQuality')
        .controller('UserController', [
-          'userService', '$mdSidenav', '$mdBottomSheet', '$timeout', '$log', '$http',
+          'userService', 'subscriptionService', '$mdSidenav', '$mdBottomSheet', '$timeout', '$log', '$http',
           UserController
        ]);
 
@@ -14,7 +14,7 @@
    * @param avatarsService
    * @constructor
    */
-  function UserController( userService, $mdSidenav, $mdBottomSheet, $timeout, $log, $http ) {
+  function UserController( userService, subscriptionService, $mdSidenav, $mdBottomSheet, $timeout, $log, $http ) {
     var self = this;
 
     self.selected      = null;
@@ -43,21 +43,17 @@
 
     function createNewSubscription() {
 
-        //create new subscription and update subscriptions for current user
-        $http.post('/airQualityMonitoring/users/'+self.selected.id+'/subscriptions', self.subscription).success(function() {
-
-        $http.get('/airQualityMonitoring/users/'+self.selected.id+'/subscriptions').then(
-            function(result) {
-                self.subscriptions = [].concat(result.data);
-                self.selected.subscriptions = [].concat(result.data);
+        subscriptionService
+            .loadSubscriptionsForUser(self.selected.id, self.subscription)
+            .then( function( subscription ) {
+                console.log(subscription);
+                self.subscriptions = [].concat(subscription);
+                self.selected.subscriptions = [].concat(subscription);
 
                 self.subscription.latitude = "";
                 self.subscription.longitude = "";
                 self.subscription.radius = "";
-
             });
-        });
-
     }
 
     /**
